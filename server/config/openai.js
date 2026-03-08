@@ -1,7 +1,14 @@
-const OpenAI = require('openai');
+const OpenAI = require("openai");
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+let openai = null;
+
+if (process.env.OPENAI_API_KEY) {
+  openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+  console.log("OpenAI enabled");
+} else {
+  console.log("OpenAI disabled (no API key)");
+}
 
 module.exports = openai;
